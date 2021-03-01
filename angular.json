@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "bloodPressureDiary"
+  "defaultProject": "bloodPressureDiary",
+  "cli": {
+    "analytics": "65bf24f9-71dc-4010-8078-a2cf1dd6d4af"
+  }
 }

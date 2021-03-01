@@ -9,18 +9,9 @@ import { AddRecordComponent } from './component/diary/add-record/add-record.comp
 import { RecordsComponent } from './component/diary/records/records.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    DiaryComponent,
-    AddRecordComponent,
-    RecordsComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent, HeaderComponent],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

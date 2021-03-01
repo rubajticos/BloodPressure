@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { DiaryComponent } from './component/diary/diary/diary.component';
 
-const routes: Routes = [{ path: '', component: DiaryComponent }];
+const routes: Routes = [
+  { path: '', redirectTo: '/diary', pathMatch: 'full' },
+  {
+    path: 'recipes',
+    loadChildren: './component/diary/diary.module.ts#DiaryModule',
+  },
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
