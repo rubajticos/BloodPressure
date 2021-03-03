@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DiaryRecord } from '../diary-record';
 import { DiaryService } from '../diary.service';
 
 @Component({
@@ -20,12 +21,9 @@ export class AddRecordComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.diaryService;
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
-    console.log('newRecordForm submit');
-    console.log(this.newRecordForm.value);
+    this.diaryService.addRecord(this.newRecordForm.value);
   }
 }

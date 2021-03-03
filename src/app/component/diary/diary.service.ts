@@ -6,7 +6,7 @@ import { DiaryRecord } from './diary-record';
   providedIn: 'root',
 })
 export class DiaryService {
-  private diaryRecordsChanged = new BehaviorSubject<DiaryRecord[]>([]);
+  diaryRecordsChanged = new BehaviorSubject<DiaryRecord[]>([]);
   private diaryRecords: DiaryRecord[] = [];
 
   constructor() {}
