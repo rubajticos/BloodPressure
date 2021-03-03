@@ -8,6 +8,25 @@
         id="bottom"
         formControlName="bottom"
       />
+      <span *ngIf="!newRecordForm.valid && newRecordForm.touched">
+        <small
+          *ngIf="newRecordForm.get('bottom')?.errors?.required"
+          id="bottomHelpInline"
+          class="text-muted"
+        >
+          Wartość wymagana
+        </small>
+        <small
+          *ngIf="
+            newRecordForm.get('bottom')?.errors?.min ||
+            newRecordForm.get('bottom')?.errors?.max
+          "
+          id="bottomHelpInline"
+          class="text-muted"
+        >
+          Wartość powinna być z przedziału 1 - 300
+        </small>
+      </span>
     </div>
     <div class="form-group col-12 col-md-4">
       <label for="top">Górne</label>
@@ -17,6 +36,25 @@
         id="top"
         formControlName="top"
       />
+      <span *ngIf="!newRecordForm.valid && newRecordForm.touched">
+        <small
+          *ngIf="newRecordForm.get('top')?.errors?.required"
+          id="topHelpInline"
+          class="text-muted"
+        >
+          Wartość wymagana
+        </small>
+        <small
+          *ngIf="
+            newRecordForm.get('top')?.errors?.min ||
+            newRecordForm.get('top')?.errors?.max
+          "
+          id="topHelpInline"
+          class="text-muted"
+        >
+          Wartość powinna być z przedziału 1 - 300
+        </small>
+      </span>
     </div>
     <div class="form-group col-12 col-md-4">
       <label for="pulse">Puls</label>
@@ -26,6 +64,25 @@
         id="pulse"
         formControlName="pulse"
       />
+      <span *ngIf="!newRecordForm.valid && newRecordForm.touched">
+        <small
+          *ngIf="newRecordForm.get('pulse')?.errors?.required"
+          id="pulseHelpInline"
+          class="text-muted"
+        >
+          Wartość wymagana
+        </small>
+        <small
+          *ngIf="
+            newRecordForm.get('pulse')?.errors?.min ||
+            newRecordForm.get('pulse')?.errors?.max
+          "
+          id="pulseHelpInline"
+          class="text-muted"
+        >
+          Wartość powinna być z przedziału 1 - 250
+        </small>
+      </span>
     </div>
   </div>
   <div class="row">
@@ -37,6 +94,15 @@
         id="date"
         formControlName="date"
       />
+      <span *ngIf="!newRecordForm.valid && newRecordForm.touched">
+        <small
+          *ngIf="newRecordForm.get('date')?.errors?.required"
+          id="dateHelpInline"
+          class="text-muted"
+        >
+          Wartość wymagana
+        </small>
+      </span>
     </div>
     <div class="form-group col-12 col-md-6">
       <label for="note">Notatka</label>
@@ -46,6 +112,15 @@
         id="note"
         formControlName="note"
       ></textarea>
+      <span *ngIf="!newRecordForm.valid && newRecordForm.touched">
+        <small
+          *ngIf="newRecordForm.get('note')?.errors?.maxlength"
+          id="noteHelpInline"
+          class="text-muted"
+        >
+          Maksymalna długość to 200
+        </small>
+      </span>
     </div>
   </div>
   <div class="col-md-12 text-center">

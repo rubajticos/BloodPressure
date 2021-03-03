@@ -13,11 +13,23 @@ export class AddRecordComponent implements OnInit {
 
   constructor(private diaryService: DiaryService) {
     this.newRecordForm = new FormGroup({
-      top: new FormControl(null, Validators.required),
-      bottom: new FormControl(null, Validators.required),
-      pulse: new FormControl(null, Validators.required),
+      top: new FormControl(null, [
+        Validators.required,
+        Validators.max(300),
+        Validators.min(1),
+      ]),
+      bottom: new FormControl(null, [
+        Validators.required,
+        Validators.max(300),
+        Validators.min(1),
+      ]),
+      pulse: new FormControl(null, [
+        Validators.required,
+        Validators.max(250),
+        Validators.min(1),
+      ]),
       date: new FormControl(null, Validators.required),
-      note: new FormControl(null),
+      note: new FormControl(null, Validators.maxLength(200)),
     });
   }
 
