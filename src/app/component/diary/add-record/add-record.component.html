@@ -32,7 +32,13 @@
   </div>
   <div class="form-group">
     <label for="note">Notatka</label>
-    <input class="form-control" type="" id="note" formControlName="note" />
+    <input class="form-control" type="text" id="note" formControlName="note" />
   </div>
-  <button class="btn btn-primary" type="submit">Zapisz</button>
+  <button
+    class="btn btn-primary"
+    type="submit"
+    [disabled]="!newRecordForm.valid"
+  >
+    Zapisz
+  </button>
 </form>
