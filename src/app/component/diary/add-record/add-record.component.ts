@@ -6,7 +6,7 @@ import { DiaryService } from '../diary.service';
 @Component({
   selector: 'app-add-record',
   templateUrl: './add-record.component.html',
-  styleUrls: ['./add-record.component.sass'],
+  styleUrls: ['./add-record.component.scss'],
 })
 export class AddRecordComponent implements OnInit {
   newRecordForm: FormGroup;
