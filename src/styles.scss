@@ -1,9 +1,10 @@
 $primary-color: #e53935;
 $secondary-color: #22223b;
 $secondary-lighter-color: #4a4e69;
-$background-color: #edf2f4;
+$background-light-color: #edf2f4;
 $background-darker-color: #d5d9db;
+$background-dark-color: #bfc3c5;
 
 body {
-  background-color: $background-color;
+  background-color: $background-light-color;
 }
