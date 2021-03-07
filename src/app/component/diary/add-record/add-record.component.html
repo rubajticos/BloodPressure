@@ -88,16 +88,16 @@
   </div>
   <div class="row">
     <div class="form-group col-12 col-md-6">
-      <label for="datet">Data</label>
+      <label for="measureDate">Data</label>
       <input
         class="form-control input-pressure text"
         type="datetime-local"
-        id="date"
-        formControlName="date"
+        id="measureDate"
+        formControlName="measureDate"
       />
       <span *ngIf="!newRecordForm.valid && newRecordForm.touched">
         <small
-          *ngIf="newRecordForm.get('date')?.errors?.required"
+          *ngIf="newRecordForm.get('measureDate')?.errors?.required"
           id="dateHelpInline"
           class="text-muted"
         >

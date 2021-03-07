@@ -28,7 +28,7 @@ export class AddRecordComponent implements OnInit {
         Validators.max(250),
         Validators.min(1),
       ]),
-      date: new FormControl(null, Validators.required),
+      measureDate: new FormControl(null, Validators.required),
       note: new FormControl(null, Validators.maxLength(200)),
     });
   }
