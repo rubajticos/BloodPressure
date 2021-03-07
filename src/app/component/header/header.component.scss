@@ -1,0 +1,10 @@
+@import '../../../styles.scss';
+
+.navbar.navbar-light {
+    background-color: $background-darker-color;
+    box-shadow: 5px 5px 10px $background-dark-color;
+}
+
+.navbar-brand {
+    font-family: 'Rubik Mono One', sans-serif;
+}

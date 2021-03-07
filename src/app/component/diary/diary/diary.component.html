@@ -1,1 +1,13 @@
-<p>diary works!</p>
+<div class="row mt-4">
+  <div class="col-12">
+    <button type="button" class="btn btn-secondary" (click)="toggleNewRecordForm()">{{addNewText}}</button>
+  </div>
+  <div class="col-12" [@showRecordForm]="formStateName">
+    <app-add-record></app-add-record>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <app-records></app-records>
+  </div>
+</div>
