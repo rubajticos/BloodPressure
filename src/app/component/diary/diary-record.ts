@@ -2,20 +2,20 @@ export class DiaryRecord {
   top: number;
   bottom: number;
   pulse: number;
-  comment: string;
+  note: string;
   measureDate: Date;
 
   constructor(
     top: number,
     bottom: number,
     pulse: number,
-    comment: string,
+    note: string,
     date: Date
   ) {
     this.top = top;
     this.bottom = bottom;
     this.pulse = pulse;
-    this.comment = comment;
+    this.note = note;
     this.measureDate = date;
   }
 }
