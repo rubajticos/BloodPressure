@@ -6,9 +6,10 @@ import { DiaryComponent } from './diary/diary.component';
 import { DiaryRoutingModule } from './diary-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { RecordComponent } from './record/record.component';
 
 @NgModule({
-  declarations: [DiaryComponent, AddRecordComponent, RecordsComponent],
+  declarations: [DiaryComponent, AddRecordComponent, RecordsComponent, RecordComponent],
   imports: [CommonModule, DiaryRoutingModule, ReactiveFormsModule, RouterModule],
   exports: [DiaryComponent, AddRecordComponent, RecordsComponent],
 })
