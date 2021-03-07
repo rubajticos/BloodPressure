@@ -41,4 +41,12 @@ export class DiaryComponent implements OnInit {
     return this.newRecordFormVisible ? 'show' : 'hide';
   }
 
+  get addNewText() {
+    if(this.newRecordFormVisible) {
+      return 'Ukryj'
+    } else {
+      return 'Dodaj nowy wpis'
+    }
+  }
+
 }
