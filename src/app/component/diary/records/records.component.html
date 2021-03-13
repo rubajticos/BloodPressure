@@ -1,12 +1,18 @@
 <div class="row">
-    <ng-container *ngIf="diaryRecords.length > 0 else notRecords" >
-        <div *ngFor="let record of diaryRecords" class="col-12" >
-            <app-record [record]=record></app-record>
-        </div>ł
-    </ng-container>
-    <ng-template #notRecords>
-        <div class="col-12 text-center mt-4 alert alert-secondary">
-            Narazie nie ma żadnych wpisów
-        </div>
-    </ng-template>
+  <ng-container *ngIf="diaryRecords.length > 0; else notRecords">
+    <div *ngFor="let record of diaryRecords" class="col-12">
+      <app-record [record]="record"></app-record>
+    </div>
+    ł
+  </ng-container>
+  <ng-template #notRecords>
+    <div class="col-12 text-center m-3">
+      <div class="alert alert-secondary">Narazie nie ma żadnych wpisów</div>
+      <img
+        src="../../../../assets/personal-planner-vectorportal.png"
+        alt="No records"
+        class="img-fluid text-center"
+      />
+    </div>
+  </ng-template>
 </div>
