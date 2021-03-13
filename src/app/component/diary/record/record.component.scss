@@ -15,8 +15,12 @@
     align-self: center;
 }
 
-.measure {
-    text-align: center;
+.column {
+    text-align: left;
+
+    &--center {
+        text-align: center;
+    }
 
     &__header {
         font-weight: bold;
@@ -27,8 +31,12 @@
         font-size: 1.2rem;
     }
 
-    &__slash {
-        color: #e53935;
-        font-weight: bold;
-    }
+}
+
+.measure__slash {
+    color: #e53935;
+    font-weight: bold;
+    display: inline-block;
+    padding-left: 2px;
+    padding-right: 2px;
 }
