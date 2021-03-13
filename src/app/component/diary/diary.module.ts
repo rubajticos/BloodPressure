@@ -8,10 +8,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RecordComponent } from './record/record.component';
 import { ChartComponent } from './chart/chart.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [DiaryComponent, AddRecordComponent, RecordsComponent, RecordComponent, ChartComponent],
-  imports: [CommonModule, DiaryRoutingModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, DiaryRoutingModule, ReactiveFormsModule, RouterModule, ChartsModule],
   exports: [DiaryComponent, AddRecordComponent, RecordsComponent],
 })
 export class DiaryModule {}
