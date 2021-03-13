@@ -1,15 +1,22 @@
 <div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-3">
-                <div class="d-flex flex-column justify-content-center date-circle border rounded-circle">
-                    <div>{{record.measureDate | date:'shortDate'}}</div>
-                    <div class="divider"></div>
-                    <div>{{record.measureDate | date:'shortTime'}}</div>
-                </div>
-            </div>
-            <div class="col-3">{{record.top}} <span class="measure-slash">/</span> {{record.bottom}} <span class="measure-slash">/</span> {{record.pulse}}</div>
-            <div class="col-6">{{record.note}}</div>
+  <div class="card-body">
+    <div class="d-flex flex-row">
+      <div
+        class="d-flex flex-column justify-content-center date-circle border rounded-circle"
+      >
+        <div>{{ record.measureDate | date: "shortDate" }}</div>
+        <div class="divider"></div>
+        <div>{{ record.measureDate | date: "shortTime" }}</div>
+      </div>
+      <div class="d-flex flex-column justify-content-center ml-5 mr-5 measure">
+        <div class="measure__header">Wartość</div>
+        <div class="measure__value">
+          {{ record.top }} <span class="measure__slash">/</span>
+          {{ record.bottom }} <span class="measure__slash">/</span>
+          {{ record.pulse }}
         </div>
+      </div>
+      <div>{{ record.note }}</div>
     </div>
+  </div>
 </div>
