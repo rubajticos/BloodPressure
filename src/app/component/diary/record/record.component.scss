@@ -1,0 +1,42 @@
+.date-circle {
+    height: 100px;
+    width: 100px;
+    border-width: 5px!important;
+    border-color: #22223b!important;
+    background-color: #4a4e69;
+    color: #fff;
+    text-align: center;
+}
+
+.divider {
+    background: red;
+    height: 1px;
+    width: 80%;
+    align-self: center;
+}
+
+.column {
+    text-align: left;
+
+    &--center {
+        text-align: center;
+    }
+
+    &__header {
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+    &__value {
+        font-size: 1.2rem;
+    }
+
+}
+
+.measure__slash {
+    color: #e53935;
+    font-weight: bold;
+    display: inline-block;
+    padding-left: 2px;
+    padding-right: 2px;
+}

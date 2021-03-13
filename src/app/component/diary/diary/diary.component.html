@@ -1,1 +1,19 @@
-<p>diary works!</p>
+<div class="row mt-4">
+  <div class="col-12">
+    <button type="button" class="btn btn-secondary" (click)="toggleNewRecordForm()">{{addNewText}}</button>
+  </div>
+  <div class="col-12" [@showRecordForm]="formStateName">
+    <app-add-record (hideMe)="toggleNewRecordForm()"></app-add-record>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 mt-4 d-flex justify-content-center">
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-secondary">Wpisy</button>
+      <button type="button" class="btn btn-secondary">Wykres</button>
+    </div>
+  </div>
+  <div class="col-12">
+    <router-outlet></router-outlet>
+  </div>
+</div>

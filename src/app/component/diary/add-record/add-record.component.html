@@ -1,1 +1,136 @@
-<p>add-record works!</p>
+<h2 class="pt-3">Dodaj nowy pomiar</h2>
+<form [formGroup]="newRecordForm" (ngSubmit)="onSubmit()" class="mt-4">
+<div class="row">
+    <div class="form-group col-12 col-md-4">
+      <label for="bottom" class="text-center">Skurczowe (mmHg)</label>
+      <input
+        class="form-control input-pressure digit"
+        type="number"
+        id="bottom"
+        formControlName="top"
+      />
+      <span *ngIf="!newRecordForm.valid && newRecordForm.touched">
+        <small
+          *ngIf="newRecordForm.get('top')?.errors?.required"
+          id="bottomHelpInline"
+          class="text-muted"
+        >
+          Wartość wymagana
+        </small>
+        <small
+          *ngIf="
+            newRecordForm.get('top')?.errors?.min ||
+            newRecordForm.get('top')?.errors?.max
+          "
+          id="bottomHelpInline"
+          class="text-muted"
+        >
+          Wartość powinna być z przedziału 1 - 300
+        </small>
+      </span>
+    </div>
+    <div class="form-group col-12 col-md-4">
+      <label for="top">Rozkurczowe (mmHg)</label>
+      <input
+        class="form-control input-pressure digit"
+        type="number"
+        id="top"
+        formControlName="bottom"
+      />
+      <span *ngIf="!newRecordForm.valid && newRecordForm.touched">
+        <small
+          *ngIf="newRecordForm.get('bottom')?.errors?.required"
+          id="topHelpInline"
+          class="text-muted"
+        >
+          Wartość wymagana
+        </small>
+        <small
+          *ngIf="
+            newRecordForm.get('bottom')?.errors?.min ||
+            newRecordForm.get('bottom')?.errors?.max
+          "
+          id="topHelpInline"
+          class="text-muted"
+        >
+          Wartość powinna być z przedziału 1 - 300
+        </small>
+      </span>
+    </div>
+    <div class="form-group col-12 col-md-4">
+      <label for="pulse">Puls (/min)</label>
+      <input
+        class="form-control input-pressure digit"
+        type="number"
+        id="pulse"
+        formControlName="pulse"
+      />
+      <span *ngIf="!newRecordForm.valid && newRecordForm.touched">
+        <small
+          *ngIf="newRecordForm.get('pulse')?.errors?.required"
+          id="pulseHelpInline"
+          class="text-muted"
+        >
+          Wartość wymagana
+        </small>
+        <small
+          *ngIf="
+            newRecordForm.get('pulse')?.errors?.min ||
+            newRecordForm.get('pulse')?.errors?.max
+          "
+          id="pulseHelpInline"
+          class="text-muted"
+        >
+          Wartość powinna być z przedziału 1 - 250
+        </small>
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-12 col-md-6">
+      <label for="measureDate">Data</label>
+      <input
+        class="form-control input-pressure text"
+        type="datetime-local"
+        id="measureDate"
+        formControlName="measureDate"
+      />
+      <span *ngIf="!newRecordForm.valid && newRecordForm.touched">
+        <small
+          *ngIf="newRecordForm.get('measureDate')?.errors?.required"
+          id="dateHelpInline"
+          class="text-muted"
+        >
+          Wartość wymagana
+        </small>
+      </span>
+    </div>
+    <div class="form-group col-12 col-md-6">
+      <label for="note">Notatka</label>
+      <textarea
+        class="form-control input-pressure text"
+        type="text"
+        id="note"
+        formControlName="note"
+      ></textarea>
+      <span *ngIf="!newRecordForm.valid && newRecordForm.touched">
+        <small
+          *ngIf="newRecordForm.get('note')?.errors?.maxlength"
+          id="noteHelpInline"
+          class="text-muted"
+        >
+          Maksymalna długość to 200
+        </small>
+      </span>
+    </div>
+  </div>
+  <div class="col-md-12 text-center mt-4">
+    <button
+      class="btn btn-primary primary btn-lg px-5 py-3"
+      type="submit"
+      [disabled]="!newRecordForm.valid"
+    >
+      Zapisz
+    </button>
+  </div>
+</form>
