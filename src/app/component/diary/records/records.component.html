@@ -1,5 +1,12 @@
 <div class="row">
-    <div *ngFor="let record of diaryRecords" class="col-12">
-        <app-record [record] = record></app-record>
-    </div>
+    <ng-container *ngIf="diaryRecords.length > 0 else notRecords" >
+        <div *ngFor="let record of diaryRecords" class="col-12" >
+            <app-record [record]=record></app-record>
+        </div>ł
+    </ng-container>
+    <ng-template #notRecords>
+        <div class="col-12 text-center mt-4 alert alert-secondary">
+            Narazie nie ma żadnych wpisów
+        </div>
+    </ng-template>
 </div>
