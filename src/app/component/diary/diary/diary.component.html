@@ -3,7 +3,7 @@
     <button type="button" class="btn btn-secondary" (click)="toggleNewRecordForm()">{{addNewText}}</button>
   </div>
   <div class="col-12" [@showRecordForm]="formStateName">
-    <app-add-record></app-add-record>
+    <app-add-record (hideMe)="toggleNewRecordForm()"></app-add-record>
   </div>
 </div>
 <div class="row">

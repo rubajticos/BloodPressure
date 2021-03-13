@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DiaryRecord } from '../diary-record';
 import { DiaryService } from '../diary.service';
@@ -9,6 +9,7 @@ import { DiaryService } from '../diary.service';
   styleUrls: ['./add-record.component.scss'],
 })
 export class AddRecordComponent implements OnInit {
+  @Output() hideMe = new EventEmitter<boolean>();
   newRecordForm: FormGroup;
 
   constructor(private diaryService: DiaryService) {
@@ -37,5 +38,7 @@ export class AddRecordComponent implements OnInit {
 
   onSubmit() {
     this.diaryService.addRecord(this.newRecordForm.value);
+    this.newRecordForm.reset();
+    this.hideMe.emit(true);
   }
 }
