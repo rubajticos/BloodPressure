@@ -1,3 +1,4 @@
+import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DiaryRecord } from '../diary-record';
@@ -37,7 +38,14 @@ export class AddRecordComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    this.diaryService.addRecord(this.newRecordForm.value);
+    const top = this.newRecordForm.controls["top"].value;
+    const bottom = this.newRecordForm.controls["bottom"].value;
+    const pulse = this.newRecordForm.controls["pulse"].value;
+    const note = this.newRecordForm.controls["note"].value;
+    const date = new Date(this.newRecordForm.controls["measureDate"].value);
+
+    const newRecord = new DiaryRecord(top, bottom, pulse, note, date);
+    this.diaryService.addRecord(newRecord);
     this.newRecordForm.reset();
     this.hideMe.emit(true);
   }

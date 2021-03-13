@@ -17,15 +17,15 @@ export class DiaryService {
   private diaryRecords: DiaryRecord[] = this.defaultRecords;
 
   constructor() {
-    this.diaryRecordsChanged.next(this.diaryRecords.slice());
+    this.diaryRecordsChanged.next(this.getRecords());
   }
 
   public getRecords() {
-    return this.diaryRecords.slice();
+    return this.diaryRecords.slice().sort((a, b) => b.measureDate.getTime() - a.measureDate.getTime())
   }
 
   public addRecord(record: DiaryRecord) {
     this.diaryRecords.push(record);
-    this.diaryRecordsChanged.next(this.diaryRecords.slice());
+    this.diaryRecordsChanged.next(this.getRecords());
   }
 }

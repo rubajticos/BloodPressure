@@ -11,7 +11,7 @@
       />
       <span *ngIf="!newRecordForm.valid && newRecordForm.touched">
         <small
-          *ngIf="newRecordForm.get('bottom')?.errors?.required"
+          *ngIf="newRecordForm.get('top')?.errors?.required"
           id="bottomHelpInline"
           class="text-muted"
         >
@@ -19,8 +19,8 @@
         </small>
         <small
           *ngIf="
-            newRecordForm.get('bottom')?.errors?.min ||
-            newRecordForm.get('bottom')?.errors?.max
+            newRecordForm.get('top')?.errors?.min ||
+            newRecordForm.get('top')?.errors?.max
           "
           id="bottomHelpInline"
           class="text-muted"
@@ -39,7 +39,7 @@
       />
       <span *ngIf="!newRecordForm.valid && newRecordForm.touched">
         <small
-          *ngIf="newRecordForm.get('top')?.errors?.required"
+          *ngIf="newRecordForm.get('bottom')?.errors?.required"
           id="topHelpInline"
           class="text-muted"
         >
@@ -47,8 +47,8 @@
         </small>
         <small
           *ngIf="
-            newRecordForm.get('top')?.errors?.min ||
-            newRecordForm.get('top')?.errors?.max
+            newRecordForm.get('bottom')?.errors?.min ||
+            newRecordForm.get('bottom')?.errors?.max
           "
           id="topHelpInline"
           class="text-muted"
