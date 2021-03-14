@@ -51,8 +51,11 @@ export class DiaryComponent implements OnInit {
   }
 
   navigateToCharts() {
-    console.log("Navigate to charts");
     this.router.navigate(["chart"], {relativeTo: this.route});
+  }
+
+  navigateToRecords() {
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
 
 }
