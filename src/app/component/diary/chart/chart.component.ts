@@ -91,7 +91,7 @@ export class ChartComponent implements OnInit, OnDestroy {
     return this.recordsBase
       .slice()
       .filter((record) => {
-        const recordDate = record.measureDate;
+        const recordDate = new Date(record.measureDate);
         recordDate.setHours(0, 0, 0, 0);
 
         return recordDate >= this.rangeFrom && recordDate <= this.rangeTo;
