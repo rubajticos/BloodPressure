@@ -1,25 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ChartDataSets, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
+import { Subscription } from 'rxjs';
+import { DiaryRecord } from '../diary-record';
+import { DiaryService } from '../diary.service';
 
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss'],
 })
-export class ChartComponent implements OnInit {
-  lineChartData: ChartDataSets[] = [
-    { data: [85, 72, 78, 75, 77, 75], label: 'Crude oil prices' },
-  ];
+export class ChartComponent implements OnInit, OnDestroy {
+  private diarySubscription: Subscription;
 
-  lineChartLabels: Label[] = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-  ];
+  lineChartData: ChartDataSets[] = [];
+
+  lineChartLabels: Label[] = [];
 
   lineChartOptions = {
     responsive: true,
@@ -36,7 +32,31 @@ export class ChartComponent implements OnInit {
   lineChartPlugins = [];
   lineChartType: ChartType = 'line';
 
-  constructor() {}
+  constructor(private diaryService: DiaryService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.diarySubscription = this.diaryService.diaryRecordsChanged.subscribe(
+      (records) => this.buildChart(records)
+    );
+  }
+
+  private buildChart(records: DiaryRecord[]) {
+    const top = records.map(r => r.top);
+    const bottom = records.map(r => r.bottom);
+    const pulse = records.map(r => r.pulse);
+    const dates = records.map(r => r.measureDate.toDateString());
+
+    this.lineChartData = [
+      { data: top, label: 'Skurczowe(górne)' },
+      { data: bottom, label: 'Rozkurczowe(dolne)' },
+      { data: pulse, label: 'Puls' },
+    ];
+
+    this.lineChartLabels = dates;
+  }
+
+
+  ngOnDestroy(): void {
+    this.diarySubscription.unsubscribe();
+  }
 }
