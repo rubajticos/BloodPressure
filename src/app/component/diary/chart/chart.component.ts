@@ -14,9 +14,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   private diarySubscription: Subscription;
 
   lineChartData: ChartDataSets[] = [];
-
   lineChartLabels: Label[] = [];
-
   lineChartOptions = {
     responsive: true,
   };
