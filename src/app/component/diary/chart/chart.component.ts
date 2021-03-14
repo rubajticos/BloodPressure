@@ -42,7 +42,7 @@ export class ChartComponent implements OnInit, OnDestroy {
     const top = records.map(r => r.top);
     const bottom = records.map(r => r.bottom);
     const pulse = records.map(r => r.pulse);
-    const dates = records.map(r => r.measureDate.toDateString());
+    const dates = records.map(r => r.measureDate.toLocaleDateString() + ' ' + r.measureDate.toLocaleTimeString());
 
     this.lineChartData = [
       { data: top, label: 'Skurczowe(górne)' },
