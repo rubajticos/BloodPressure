@@ -36,7 +36,7 @@ export class ChartComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.diarySubscription = this.diaryService.diaryRecordsChanged.subscribe(
-      (records) => this.buildChart(records)
+      (records) => this.buildChart(records.sort((a, b) => a.measureDate.getTime() - b.measureDate.getTime()))
     );
   }
 
