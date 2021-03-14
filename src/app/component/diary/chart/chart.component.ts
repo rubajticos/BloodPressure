@@ -14,7 +14,10 @@ import { DiaryService } from '../diary.service';
 })
 export class ChartComponent implements OnInit, OnDestroy {
   private diarySubscription: Subscription;
+  private recordsBase: DiaryRecord[];
   rangeForm: FormGroup;
+  rangeFrom: Date;
+  rangeTo: Date;
 
   lineChartData: ChartDataSets[] = [];
   lineChartLabels: Label[] = [];
@@ -35,29 +38,41 @@ export class ChartComponent implements OnInit, OnDestroy {
 
   constructor(private diaryService: DiaryService) {
     const now = new Date();
-    const monthAgo = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate(), now.getHours());
+    const monthAgo = new Date(
+      now.getFullYear(),
+      now.getMonth() - 1,
+      now.getDate(),
+      now.getHours()
+    );
     this.rangeForm = new FormGroup({
-      dateFrom: new FormControl(formatDate(monthAgo,'yyyy-MM-dd','en'), [Validators.required]),
-      dateTo: new FormControl(formatDate(now,'yyyy-MM-dd','en'), [Validators.required]),
+      dateFrom: new FormControl(formatDate(monthAgo, 'yyyy-MM-dd', 'en'), [
+        Validators.required,
+      ]),
+      dateTo: new FormControl(formatDate(now, 'yyyy-MM-dd', 'en'), [
+        Validators.required,
+      ]),
     });
+
+    this.rangeFrom = new Date(this.rangeForm.controls['dateFrom'].value);
+    this.rangeTo = new Date(this.rangeForm.controls['dateTo'].value);
   }
 
   ngOnInit(): void {
     this.diarySubscription = this.diaryService.diaryRecordsChanged.subscribe(
-      (records) =>
-        this.buildChart(
-          records.sort(
-            (a, b) => a.measureDate.getTime() - b.measureDate.getTime()
-          )
-        )
+      (records) => {
+        this.recordsBase = records;
+        this.buildChart();
+      }
     );
   }
 
-  private buildChart(records: DiaryRecord[]) {
-    const top = records.map((r) => r.top);
-    const bottom = records.map((r) => r.bottom);
-    const pulse = records.map((r) => r.pulse);
-    const dates = records.map(
+  private buildChart() {
+    const data = this.prepareData();
+
+    const top = data.map((r) => r.top);
+    const bottom = data.map((r) => r.bottom);
+    const pulse = data.map((r) => r.pulse);
+    const dates = data.map(
       (r) =>
         r.measureDate.toLocaleDateString() +
         ' ' +
@@ -73,11 +88,20 @@ export class ChartComponent implements OnInit, OnDestroy {
     this.lineChartLabels = dates;
   }
 
+  private prepareData() {
+    return this.recordsBase.slice().filter((record) => {
+      return record.measureDate.toDateString() > this.rangeFrom.toDateString() &&
+        record.measureDate.toDateString() <= this.rangeTo.toDateString();
+    });
+  }
+
   ngOnDestroy(): void {
     this.diarySubscription.unsubscribe();
   }
 
   onSubmit() {
-    console.log('fromToSubmit called');
+    this.rangeFrom = new Date(this.rangeForm.controls['dateFrom'].value);
+    this.rangeTo = new Date(this.rangeForm.controls['dateTo'].value);
+    this.buildChart();
   }
 }
