@@ -1,4 +1,43 @@
-<div class="chart-wrapper">
+<div class="card mt-4">
+  <div class="card-body">
+    <h5 class="card-title">Wybierz zakres</h5>
+    <div class="card-text">
+      <form [formGroup]="rangeForm" (ngSubmit)="onSubmit()" class="mt-4">
+        <div class="row">
+          <div class="form-group col-4 col-md-4">
+            <label for="dateFrom" class="text-center">Od</label>
+            <input
+              class="form-control input-pressure digit"
+              type="date"
+              id="dateFrom"
+              formControlName="dateFrom"
+            />
+          </div>
+          <div class="form-group col-4 col-md-4">
+            <label for="dateTo">Do</label>
+            <input
+              class="form-control input-pressure digit"
+              type="date"
+              id="dateTo"
+              formControlName="dateTo"
+            />
+          </div>
+          <div class="col-4 text-center mt-4">
+            <button
+              class="btn btn-primary primary px-5"
+              type="submit"
+              [disabled]="!rangeForm.valid"
+            >
+              Zapisz
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="chart-wrapper mt-4">
   <canvas
     baseChart
     [datasets]="lineChartData"
