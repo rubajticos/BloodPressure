@@ -53,8 +53,7 @@ export class ChartComponent implements OnInit, OnDestroy {
       ]),
     });
 
-    this.rangeFrom = new Date(this.rangeForm.controls['dateFrom'].value);
-    this.rangeTo = new Date(this.rangeForm.controls['dateTo'].value);
+    this.updateRangeDates();
   }
 
   ngOnInit(): void {
@@ -89,10 +88,15 @@ export class ChartComponent implements OnInit, OnDestroy {
   }
 
   private prepareData() {
-    return this.recordsBase.slice().filter((record) => {
-      return record.measureDate.toDateString() > this.rangeFrom.toDateString() &&
-        record.measureDate.toDateString() <= this.rangeTo.toDateString();
-    });
+    return this.recordsBase
+      .slice()
+      .filter((record) => {
+        const recordDate = record.measureDate;
+        recordDate.setHours(0, 0, 0, 0);
+
+        return recordDate >= this.rangeFrom && recordDate <= this.rangeTo;
+      })
+      .sort((a, b) => a.measureDate.getTime() - b.measureDate.getTime());
   }
 
   ngOnDestroy(): void {
@@ -100,8 +104,15 @@ export class ChartComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.rangeFrom = new Date(this.rangeForm.controls['dateFrom'].value);
-    this.rangeTo = new Date(this.rangeForm.controls['dateTo'].value);
+    this.updateRangeDates();
     this.buildChart();
+  }
+
+  private updateRangeDates() {
+    this.rangeFrom = new Date(this.rangeForm.controls['dateFrom'].value);
+    this.rangeFrom.setHours(0, 0, 0, 0);
+    this.rangeTo = new Date(this.rangeForm.controls['dateTo'].value);
+    this.rangeTo.setHours(0, 0, 0, 0);
+
   }
 }
