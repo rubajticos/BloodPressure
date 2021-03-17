@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "blood-pressure-diary-b9c95": {
+      "hosting": {
+        "bloodPressureDiary": [
+          "blood-pressure-diary-b9c95"
+        ]
+      }
+    }
+  }
+}

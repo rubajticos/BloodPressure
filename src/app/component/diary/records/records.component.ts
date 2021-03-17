@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import firebase from 'firebase';
 import { DiaryRecord } from '../diary-record';
 import { DiaryService } from '../diary.service';
 
@@ -17,6 +18,9 @@ export class RecordsComponent implements OnInit {
     this.diaryService.diaryRecordsChanged.subscribe(records => {
       this.diaryRecords = records.sort((a, b) => b.measureDate.getTime() - a.measureDate.getTime());
     })
+
+    console.log(firebase.auth().app);
+    
   }
 
 }
