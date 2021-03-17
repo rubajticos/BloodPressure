@@ -21,7 +21,7 @@ export class DiaryService {
   }
 
   public getRecords() {
-    return this.diaryRecords.slice().sort((a, b) => b.measureDate.getTime() - a.measureDate.getTime())
+    return this.diaryRecords.slice();
   }
 
   public addRecord(record: DiaryRecord) {

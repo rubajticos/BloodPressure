@@ -1,5 +1,6 @@
 import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-diary',
@@ -28,7 +29,7 @@ import { Component, OnInit } from '@angular/core';
 export class DiaryComponent implements OnInit {
   newRecordFormVisible = false;
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
@@ -47,6 +48,14 @@ export class DiaryComponent implements OnInit {
     } else {
       return 'Dodaj nowy wpis'
     }
+  }
+
+  navigateToCharts() {
+    this.router.navigate(["chart"], {relativeTo: this.route});
+  }
+
+  navigateToRecords() {
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
 
 }

@@ -15,7 +15,7 @@ export class RecordsComponent implements OnInit {
   ngOnInit(): void {
 
     this.diaryService.diaryRecordsChanged.subscribe(records => {
-      this.diaryRecords = records;
+      this.diaryRecords = records.sort((a, b) => b.measureDate.getTime() - a.measureDate.getTime());
     })
   }
 
