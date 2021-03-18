@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-loginregister',
@@ -10,9 +10,18 @@ export class LoginRegisterComponent implements OnInit {
   registerMode = false;
   authForm: FormGroup;
 
-  constructor() {}
+  constructor() {
+    this.initForm();
+  }
 
   ngOnInit(): void {}
+
+  initForm() {
+    this.authForm = new FormGroup({
+      login: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required),
+    });
+  }
 
   getTitle() {
     return this.registerMode ? 'Rejestracja' : 'Logowanie';
@@ -30,5 +39,9 @@ export class LoginRegisterComponent implements OnInit {
 
   toggleMode() {
     this.registerMode = !this.registerMode;
+  }
+
+  onSubmit() {
+    console.log(this.authForm.value);
   }
 }

@@ -5,7 +5,7 @@
         <h2 class="card-title text-center">
           {{ getTitle() }}
         </h2>
-        <form [formGroup]="authForm" class="mt-4">
+        <form [formGroup]="authForm" class="mt-4" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="login" class="text-center">Login</label>
             <input
