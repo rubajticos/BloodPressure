@@ -39,6 +39,7 @@ export class LoginRegisterComponent implements OnInit {
 
   toggleMode() {
     this.registerMode = !this.registerMode;
+    this.authForm.reset();
   }
 
   onSubmit() {
