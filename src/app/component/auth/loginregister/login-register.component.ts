@@ -43,6 +43,8 @@ export class LoginRegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.authForm.value);
+    if (this.authForm.valid) {
+      console.log(this.authForm.value);
+    }
   }
 }
