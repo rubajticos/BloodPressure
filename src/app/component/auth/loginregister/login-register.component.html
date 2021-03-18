@@ -1,1 +1,43 @@
-<p>loginregister works!</p>
+<div class="row mt-4">
+  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title text-center">
+          {{ getTitle() }}
+        </h2>
+        <form [formGroup]="authForm" class="mt-4">
+          <div class="form-group">
+            <label for="login" class="text-center">Login</label>
+            <input
+              type="text"
+              class="form-control"
+              id="login"
+              placeholder="Np. JanKowalski"
+              formControlName="login"
+            />
+          </div>
+          <div class="form-group">
+            <label for="password" class="text-center">Hasło</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Hasło"
+              formControlName="password"
+            />
+          </div>
+          <div class="text-center mx-auto">
+            <button class="btn btn-primary btn-lg" type="submit">
+              {{ getSubmitText() }}
+            </button>
+          </div>
+          <div class="text-center mt-3">
+            <button class="btn btn-secondary btn-sm" (click)="toggleMode()">
+              {{ getToggleModeText() }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
