@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-loginregister',
@@ -10,7 +11,7 @@ export class LoginRegisterComponent implements OnInit {
   registerMode = false;
   authForm: FormGroup;
 
-  constructor() {
+  constructor(private authService: AuthService) {
     this.initForm();
   }
 
@@ -44,7 +45,24 @@ export class LoginRegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.authForm.valid) {
-      console.log(this.authForm.value);
+      const email: string = this.authForm.value.login;
+      const password: string = this.authForm.value.password;
+
+      if (this.registerMode) {
+        this.authService
+          .registerNewUser(email.trim(), password.trim())
+          .catch(function (error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            if (errorCode == 'auth/weak-password') {
+              alert('The password is too weak.');
+            } else {
+              alert(errorMessage);
+            }
+            console.log(error);
+          })
+          .then(() => alert('Rejestracja powiodła się!'));
+      }
     }
   }
 }
