@@ -10,6 +10,8 @@ import { AuthService } from '../auth.service';
 export class LoginRegisterComponent implements OnInit {
   registerMode = false;
   authForm: FormGroup;
+  error: string = '';
+  successMessage: string = '';
 
   constructor(private authService: AuthService) {
     this.initForm();
@@ -51,18 +53,35 @@ export class LoginRegisterComponent implements OnInit {
       if (this.registerMode) {
         this.authService
           .registerNewUser(email.trim(), password.trim())
-          .catch(function (error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            if (errorCode == 'auth/weak-password') {
-              alert('The password is too weak.');
-            } else {
-              alert(errorMessage);
-            }
-            console.log(error);
-          })
-          .then(() => alert('Rejestracja powiodła się!'));
+          .then((result) => this.onRegisterSuccess())
+          .catch((error) => this.onRegisterFailed(error));
       }
+    }
+  }
+
+  onRegisterSuccess() {
+    this.successMessage = 'Zostałeś poprawnie zarejestrowany';
+  }
+
+  onRegisterFailed(error: any) {
+    const errorCode = error.code;
+    this.handleRegisterError(errorCode);
+  }
+
+  handleRegisterError(errorCode: any) {
+    switch (errorCode) {
+      case 'auth/email-already-in-use':
+        this.error = 'Podany e-mail jest zajęty';
+        break;
+      case 'auth/invalid-email':
+        this.error = 'E-mail jest nieprawidłowy';
+        break;
+      case 'auth/operation-not-allowed':
+        this.error = 'Wystąpił błąd.';
+        break;
+      case 'auth/weak-password':
+        this.error = 'Hasło jest zbyt słabe';
+        break;
     }
   }
 }
