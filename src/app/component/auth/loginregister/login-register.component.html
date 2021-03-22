@@ -7,21 +7,28 @@
         </h2>
         <form [formGroup]="authForm" class="mt-4" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="login" class="text-center">Login</label>
+            <label for="email" class="text-center">E-mail</label>
             <input
               type="text"
               class="form-control"
-              id="login"
-              placeholder="Np. JanKowalski"
-              formControlName="login"
+              id="email"
+              placeholder="Np. jankowalski@gmail.com"
+              formControlName="email"
             />
             <span *ngIf="authForm.touched && !authForm.valid">
               <small
-                *ngIf="authForm.get('login')?.errors?.required"
-                id="loginHelpInline"
+                *ngIf="authForm.get('email')?.errors?.required"
+                id="emailHelpInline"
                 class="text-danger"
               >
                 Wartość wymagana
+              </small>
+              <small
+                *ngIf="authForm.get('email')?.errors?.email"
+                id="emailHelpInline"
+                class="text-danger"
+              >
+                Musisz wprowadzić e-mail
               </small>
             </span>
           </div>

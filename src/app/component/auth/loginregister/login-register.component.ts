@@ -19,7 +19,7 @@ export class LoginRegisterComponent implements OnInit {
 
   initForm() {
     this.authForm = new FormGroup({
-      login: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, Validators.required),
     });
   }
@@ -45,7 +45,7 @@ export class LoginRegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.authForm.valid) {
-      const email: string = this.authForm.value.login;
+      const email: string = this.authForm.value.email;
       const password: string = this.authForm.value.password;
 
       if (this.registerMode) {
