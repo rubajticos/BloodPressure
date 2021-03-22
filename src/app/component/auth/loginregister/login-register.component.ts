@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginRegisterComponent implements OnInit {
   error: string = '';
   successMessage: string = '';
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.initForm();
   }
 
@@ -46,6 +47,8 @@ export class LoginRegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    this.resetMessages();
+
     if (this.authForm.valid) {
       const email: string = this.authForm.value.email;
       const password: string = this.authForm.value.password;
@@ -60,7 +63,13 @@ export class LoginRegisterComponent implements OnInit {
   }
 
   onRegisterSuccess() {
-    this.successMessage = 'Zostałeś poprawnie zarejestrowany';
+    this.successMessage =
+      'Zostałeś poprawnie zarejestrowany. Możesz się zalogować.';
+    setTimeout(() => {
+      this.authForm.reset();
+      this.resetMessages();
+      this.toggleMode();
+    }, 2000);
   }
 
   onRegisterFailed(error: any) {
@@ -83,5 +92,10 @@ export class LoginRegisterComponent implements OnInit {
         this.error = 'Hasło jest zbyt słabe';
         break;
     }
+  }
+
+  resetMessages() {
+    this.error = '';
+    this.successMessage = '';
   }
 }
