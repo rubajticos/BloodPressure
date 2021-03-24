@@ -9,3 +9,6 @@ body {
   background-color: $background-light-color;
   font-family: 'Roboto', sans-serif;
 }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
