@@ -27,18 +27,18 @@
     id="navbarNav"
   >
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li *ngIf="isAuthorized" class="nav-item active">
         <a class="nav-link" href="#"
           >Wpisy<span class="sr-only">(current)</span></a
         >
       </li>
-      <li class="nav-item">
+      <li *ngIf="!isAuthorized" class="nav-item">
         <a class="nav-link" href="#">Zaloguj się</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="!isAuthorized" class="nav-item">
         <a class="nav-link" href="#">Zarejestruj się</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="isAuthorized" class="nav-item">
         <a class="nav-link" href="#">Wyloguj się</a>
       </li>
     </ul>
