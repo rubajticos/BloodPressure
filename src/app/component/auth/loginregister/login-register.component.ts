@@ -58,6 +58,11 @@ export class LoginRegisterComponent implements OnInit {
           .registerNewUser(email.trim(), password.trim())
           .then((result) => this.onRegisterSuccess())
           .catch((error) => this.onRegisterFailed(error));
+      } else {
+        this.authService
+          .login(email.trim(), password.trim())
+          .then((result) => this.onLoginSuccess())
+          .catch((error) => this.onLoginFailed(error));
       }
     }
   }
@@ -90,6 +95,40 @@ export class LoginRegisterComponent implements OnInit {
         break;
       case 'auth/weak-password':
         this.error = 'Hasło jest zbyt słabe';
+        break;
+    }
+  }
+
+  onLoginSuccess() {
+    this.successMessage = 'Zostałeś poprawnie zalogowany.';
+    setTimeout(() => {
+      this.authForm.reset();
+      this.resetMessages();
+      this.navigateToDiary();
+    }, 2000);
+  }
+
+  navigateToDiary() {
+    this.router.navigate(['/diary']);
+  }
+  onLoginFailed(error: any) {
+    const errorCode = error.code;
+    this.handleLoginError(errorCode);
+  }
+
+  handleLoginError(errorCode: any) {
+    switch (errorCode) {
+      case 'auth/invalid-email':
+        this.error = 'E-mail jest nieprawidłowy';
+        break;
+      case 'auth/user-disabled':
+        this.error = 'Twoje konto jest wyłączone.';
+        break;
+      case 'auth/user-not-found':
+        this.error = 'Twoje konto nie istenieje. Zarejestruj się';
+        break;
+      case 'auth/wrong-password':
+        this.error = 'Podane hasło jest nieprawidłowe';
         break;
     }
   }
