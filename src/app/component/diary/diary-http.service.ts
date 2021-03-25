@@ -7,11 +7,11 @@ import { DiaryRecord } from './diary-record';
   providedIn: 'root',
 })
 export class DiaryHttpService {
+  private diaryUrl = environment.baseUrl + '/diary.json';
+
   constructor(private http: HttpClient) {}
 
   insertRecord(record: DiaryRecord) {
-    this.http
-      .post(environment.baseUrl, record)
-      .subscribe((res) => console.log(res));
+    this.http.post(this.diaryUrl, record).subscribe((res) => console.log(res));
   }
 }
