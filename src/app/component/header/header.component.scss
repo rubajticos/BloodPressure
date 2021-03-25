@@ -1,10 +1,23 @@
-@import '../../../styles.scss';
+@import "../../../styles.scss";
 
 .navbar.navbar-light {
-    background-color: $background-darker-color;
-    box-shadow: 5px 5px 10px $background-dark-color;
+  background-color: $background-darker-color;
+  box-shadow: 5px 5px 10px $background-dark-color;
 }
 
 .navbar-brand {
-    font-family: 'Rubik Mono One', sans-serif;
+  font-family: "Rubik Mono One", sans-serif;
+}
+
+.active-link {
+  border-bottom: 2px solid red;
+}
+
+.nav-item {
+  .nav-link {
+    color: $secondary-lighter-color;
+  }
+  .active-link {
+    color: $secondary-color;
+  }
 }

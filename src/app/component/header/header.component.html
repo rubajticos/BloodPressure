@@ -28,18 +28,19 @@
   >
     <ul class="nav justify-content-center">
       <li *ngIf="isAuthorized" class="nav-item active">
-        <a class="nav-link" href="#"
-          >Wpisy<span class="sr-only">(current)</span></a
+        <a class="nav-link" routerLink="/diary" routerLinkActive="active-link"
+          >Wpisy</a
         >
       </li>
       <li *ngIf="!isAuthorized" class="nav-item">
-        <a class="nav-link" href="#">Zaloguj się</a>
-      </li>
-      <li *ngIf="!isAuthorized" class="nav-item">
-        <a class="nav-link" href="#">Zarejestruj się</a>
+        <a class="nav-link" routerLink="/auth" routerLinkActive="active-link"
+          >Logowanie/Rejestracja</a
+        >
       </li>
       <li *ngIf="isAuthorized" class="nav-item">
-        <a class="nav-link" href="#">Wyloguj się</a>
+        <a class="nav-link" style="cursor: pointer" (click)="onSignOut()"
+          >Wyloguj się</a
+        >
       </li>
     </ul>
   </div>
