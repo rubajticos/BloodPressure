@@ -13,6 +13,7 @@ export const environment = {
     appId: '1:747993810755:web:b2eee0f4f5e5f35ca611f6',
     measurementId: 'G-Q0KF5CE47E',
   },
+  baseUrl: 'https://blood-pressure-diary-b9c95-default-rtdb.firebaseio.com/',
 };
 
 /*
