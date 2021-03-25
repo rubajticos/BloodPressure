@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { DiaryHttpService } from './diary-http.service';
 import { DiaryRecord } from './diary-record';
 
 @Injectable({
@@ -9,7 +10,7 @@ export class DiaryService {
   diaryRecordsChanged = new BehaviorSubject<DiaryRecord[]>([]);
   private diaryRecords: DiaryRecord[] = [];
 
-  constructor() {
+  constructor(private diaryHttp: DiaryHttpService) {
     this.diaryRecordsChanged.next(this.getRecords());
   }
 
@@ -18,6 +19,7 @@ export class DiaryService {
   }
 
   public addRecord(record: DiaryRecord) {
+    this.diaryHttp.insertRecord(record);
     this.diaryRecords.push(record);
     this.diaryRecordsChanged.next(this.getRecords());
   }
