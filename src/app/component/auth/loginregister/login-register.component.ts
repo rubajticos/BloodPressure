@@ -96,6 +96,9 @@ export class LoginRegisterComponent implements OnInit {
       case 'auth/weak-password':
         this.error = 'Hasło jest zbyt słabe';
         break;
+      case 'auth/too-many-requests':
+        this.error = 'Spróbuj ponownie za chwilę';
+        break;
     }
   }
 
@@ -129,6 +132,9 @@ export class LoginRegisterComponent implements OnInit {
         break;
       case 'auth/wrong-password':
         this.error = 'Podane hasło jest nieprawidłowe';
+        break;
+      case 'auth/too-many-requests':
+        this.error = 'Spróbuj ponownie za chwilę';
         break;
     }
   }
