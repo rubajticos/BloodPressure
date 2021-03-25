@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { DiaryRecord } from './diary-record';
 
 @Injectable({
@@ -8,5 +9,9 @@ import { DiaryRecord } from './diary-record';
 export class DiaryHttpService {
   constructor(private http: HttpClient) {}
 
-  insertRecord(record: DiaryRecord) {}
+  insertRecord(record: DiaryRecord) {
+    this.http
+      .post(environment.baseUrl, record)
+      .subscribe((res) => console.log(res));
+  }
 }
