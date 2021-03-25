@@ -11,8 +11,20 @@ import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
-  declarations: [DiaryComponent, AddRecordComponent, RecordsComponent, RecordComponent, ChartComponent],
-  imports: [CommonModule, DiaryRoutingModule, ReactiveFormsModule, RouterModule, ChartsModule],
+  declarations: [
+    DiaryComponent,
+    AddRecordComponent,
+    RecordsComponent,
+    RecordComponent,
+    ChartComponent,
+  ],
+  imports: [
+    CommonModule,
+    DiaryRoutingModule,
+    ReactiveFormsModule,
+    RouterModule,
+    ChartsModule,
+  ],
   exports: [DiaryComponent, AddRecordComponent, RecordsComponent],
 })
 export class DiaryModule {}
